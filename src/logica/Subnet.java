@@ -33,9 +33,9 @@ public class Subnet {
     public int getHostDisponibles() { return hostDiponibles; }
     public int getHostPerdidos() { return hostPerdidos; }
     // Metodo paa guardar todos los datos y calcularlos valores de salida  
-    public void setSubnetData(String networkAddress, String broadcastAddress, String maskAddress,
+    public void setRedData(String networkAddress, String broadcastAddress, String maskAddress,
                               int prefijo, String primerHost, String ultimoHost,
-                              int hostDisponibles, int hostPerdidos) {
+                              int hostDisponibles) {
         this.networkAddress = networkAddress;
         this.broadcastAddress = broadcastAddress;
         this.maskAddress = maskAddress;
@@ -46,6 +46,21 @@ public class Subnet {
        
     // Calculo de los host perdidos 
         this.hostPerdidos = (hostDisponibles > hostRequeridos) ? (hostDisponibles - hostRequeridos) : 0;
+    }
+    @Override
+    public String toString() { 
+        return "Subnet{" +
+                "name='" + name + '\'' +
+                ", hostRequeridos=" + hostRequeridos +
+                ", networkAddress='" + networkAddress + '\'' +
+                ", broadcastAddress='" + broadcastAddress + '\'' +
+                ", maskAddress='" + maskAddress + '\'' +
+                ", prefijo=" + prefijo +
+                ", primerHost='" + primerHost + '\'' +
+                ", ultimoHost='" + ultimoHost + '\'' +
+                ", hostDiponibles=" + hostDiponibles +
+                ", hostPerdidos=" + hostPerdidos +
+                '}';
     }
 
 }
