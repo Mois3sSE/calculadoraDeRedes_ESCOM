@@ -20,6 +20,24 @@ Para ejecutar este proyecto necesitas contar con las siguientes aplicaciones :
 * **Sistema Operativo:** Windows, Linux o macOS.
 * **IDE Sugerido:** Visual Studio Code (con Extension Pack for Java).
 
+## Estructura del proyecto
+```text
+ProyectoRedes/
+├── src/
+│   ├── gui/                # Paquete de Interfaz Gráfica
+│   │   ├── appVentana.java      (Ventana Principal)
+│   │   ├── cidrPanel.java      (Pestaña CIDR)
+│   │   ├── vlsmPanel.java      (Pestaña VLSM - Tabla)
+│   │   └── acercaDePanel.java  (Créditos y Enlaces)
+│   │
+│   └── logica/             # Paquete de Lógica de Negocio
+│       ├── IPUtils.java        (Conversiones y Validaciones Regex)
+│       ├── Subnet.java         (Objeto de Datos)
+│       └── VLSMAlgorito.java  (Motor de Cálculo y Ordenamiento)
+├── bin/                    # Archivos compilados (.class)
+├── README.md               # Documentación
+└── CalculadoraIP.jar       # Ejecutable Final
+
 ## Instrucciones de Instalación y Ejecución
 
 ### Opción A: Desde Visual Studio Code (Opcion para codigo fuente) 
@@ -112,3 +130,71 @@ Para cada subred solicitada:
 El sistema incluye protecciones para casos especiales:
 * **/31 y /32:** Se ajusta el cálculo de "Hosts Disponibles" a 0 para evitar resultados negativos en la interfaz (ya que matemáticamente `2^1 - 2 = 0`).
 * **Input Sanitization:** Uso de Expresiones Regulares (Regex) para validar que el usuario no ingrese octetos mayores a 255 o caracteres no numéricos.
+
+##  Guía de Uso del Sistema (Manual de Usuario)
+
+La aplicación cuenta con una interfaz gráfica intuitiva dividida en pestañas (`Tabs`). A continuación se detalla el flujo de trabajo para cada módulo.
+
+### 1. Módulo: Calculadora CIDR 
+Utilice este módulo cuando desee analizar una sola red y conocer sus límites y rango útil.
+
+1.  **Navegación:** Seleccione la pestaña **"Calculadora CIDR"**.
+2.  **Ingreso de Datos:**
+    * **Dirección IP:** Ingrese una IP válida 
+    * **Prefijo:** Ingrese el número de bits de red (Ej: `24` para una máscara 255.255.255.0).
+3.  **Ejecución:** Haga clic en el botón **"Calcular"**.
+4.  **Lectura de Resultados:** El área de texto inferior mostrará:
+    * Dirección de Red y Broadcast.
+    * Máscara en formato decimal.
+    * Rango de IPs utilizables para hosts.
+    * Total de direcciones disponibles.
+
+### 2. Módulo: Calculadora VLSM 
+Utilice este módulo para dividir una red principal en múltiples subredes de diferentes tamaños, optimizando el espacio.
+
+#### Paso A: Definir la Red Base
+En la sección superior **"1. Configuración Red Base"**:
+* Ingrese la IP principal que desea dividir .
+* Ingrese el prefijo del bloque total.
+
+#### Paso B: Agregar Departamentos
+En la sección media izquierda **"2. Requerimientos de Subredes"**:
+1.  **Nombre Depto:** Escriba un identificador (Ej: "Ventas", "Sistemas").
+2.  **Hosts Necesarios:** Escriba la cantidad de máquinas requeridas (Ej: `50`, `1000`).
+3.  **Acción:** Presione el botón **"Agregar (+)"**.
+    * *Nota:* Verá que el departamento se añade a la tabla pequeña de la izquierda.
+    * *Repita este paso* para todos los departamentos que necesite. No importa el orden en que los ingrese; el sistema los ordenará automáticamente.
+
+#### Paso C: Calcular y Analizar
+Una vez cargados todos los departamentos:
+1.  Presione el botón verde **"CALCULAR VLSM"**.
+2.  Observe la **Tabla de Resultados** en la parte inferior.
+
+**Interpretación de la Tabla:**
+* **Ordenamiento:** Notará que las subredes aparecen ordenadas de mayor a menor demanda (Best-Fit).
+* **Desperdicio:** La columna final muestra cuántas IPs sobran en cada bloque asignado.
+* **Rangos:** Los rangos son contiguos; donde termina una subred, inmediatamente comienza la siguiente.
+
+#### Funciones Adicionales
+* **Limpiar Todo:** Borra la lista de departamentos y los resultados para iniciar un nuevo cálculo desde cero.
+
+### 3. Pestaña "Acerca De"
+Información institucional y créditos del equipo de desarrollo.
+* Incluye botones interactivos para visitar el **Repositorio en GitHub** o abrir la documentación local (**README**) directamente desde la aplicación.
+
+### ⚠️ Manejo de Errores Comunes
+El sistema cuenta con validaciones para guiar al usuario:
+* **Espacio Insuficiente:** Si la suma de los hosts requeridos supera la capacidad de la Red Base, el sistema mostrará una alerta indicando que no hay espacio disponible.
+* **Formatos Inválidos:** Si ingresa texto en campos numéricos o IPs mal formadas (ej: `999.999.999`), el sistema le solicitará corregir la entrada.
+
+* ### Alcance y Limitaciones 🚧
+Es honesto y profesional decir **qué NO hace** tu programa. Esto te protege si el profesor intenta meter una IPv6 o hacer algo muy raro.
+
+**Copia esto al final, antes de los créditos:**
+
+```markdown
+## ⚠️ Alcance y Limitaciones
+* **Protocolo:** El sistema está diseñado exclusivamente para **IPv4**. No soporta direcciones IPv6.
+* **Clases:** Soporta direccionamiento **Classless** (CIDR). No restringe por Clases A, B o C antiguas, permitiendo mayor flexibilidad.
+* **Validación:** El sistema rechaza octetos superiores a 255 y caracteres no numéricos, pero asume que el usuario tiene conocimientos básicos de qué es una IP privada/pública.
+* **Máscaras:** Soporta máscaras desde `/1` hasta `/32`. Para máscaras `/31` y `/32`, el sistema reportará 0 hosts disponibles conforme a la fórmula estándar `2^n - 2`.
