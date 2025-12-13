@@ -8,7 +8,7 @@ public class appVentana extends JFrame {
     public appVentana() {
         // Configuracion basica de la ventana
         setTitle("Calculadora IP - 5CM1 - Proyecto Redes"); 
-        setSize(800, 600); 
+        setSize(800, 900); 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
         setLocationRelativeTo(null); 
 
