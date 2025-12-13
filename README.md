@@ -182,19 +182,17 @@ Una vez cargados todos los departamentos:
 Información institucional y créditos del equipo de desarrollo.
 * Incluye botones interactivos para visitar el **Repositorio en GitHub** o abrir la documentación local (**README**) directamente desde la aplicación.
 
-### ⚠️ Manejo de Errores Comunes
+### Manejo de Errores Comunes
 El sistema cuenta con validaciones para guiar al usuario:
 * **Espacio Insuficiente:** Si la suma de los hosts requeridos supera la capacidad de la Red Base, el sistema mostrará una alerta indicando que no hay espacio disponible.
 * **Formatos Inválidos:** Si ingresa texto en campos numéricos o IPs mal formadas (ej: `999.999.999`), el sistema le solicitará corregir la entrada.
 
-* ### Alcance y Limitaciones 🚧
-Es honesto y profesional decir **qué NO hace** tu programa. Esto te protege si el profesor intenta meter una IPv6 o hacer algo muy raro.
+### Alcance y Limitaciones 
 
-**Copia esto al final, antes de los créditos:**
+El presente software fue desarrollado bajo las siguientes condiciones y restricciones:
 
-```markdown
-## ⚠️ Alcance y Limitaciones
-* **Protocolo:** El sistema está diseñado exclusivamente para **IPv4**. No soporta direcciones IPv6.
-* **Clases:** Soporta direccionamiento **Classless** (CIDR). No restringe por Clases A, B o C antiguas, permitiendo mayor flexibilidad.
-* **Validación:** El sistema rechaza octetos superiores a 255 y caracteres no numéricos, pero asume que el usuario tiene conocimientos básicos de qué es una IP privada/pública.
-* **Máscaras:** Soporta máscaras desde `/1` hasta `/32`. Para máscaras `/31` y `/32`, el sistema reportará 0 hosts disponibles conforme a la fórmula estándar `2^n - 2`.
+* **Protocolo:** Diseñado exclusivamente para **IPv4**. No soporta direcciones IPv6.
+* **Enfoque Classless:** Implementa **CIDR** (Classless Inter-Domain Routing), ignorando las restricciones de clases antiguas (A, B, C) para mayor flexibilidad.
+* **Validación de Entradas:** El sistema incluye sanitización de datos (Regex) para rechazar octetos > 255 o caracteres alfabéticos.
+* **Casos Borde (/31 y /32):** Para máscaras de 31 y 32 bits, el sistema reporta **0 hosts disponibles**, apegándose a la fórmula estándar `(2^n) - 2` utilizada en el curso.
+
