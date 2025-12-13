@@ -1,4 +1,3 @@
-
 # Proyecto calculadora de redes ip CIDR/VLSM
 Proyecto desarrollado para la unidad de aprendizaje **Redes de Computadoras** en la **Escuela Superior de Cómputo (ESCOM - IPN)**.
 Dentro del Plan de estudios 2020 
@@ -359,3 +358,4 @@ El presente software fue desarrollado bajo las siguientes condiciones y restricc
 * **Enfoque Classless:** Implementa **CIDR** (Classless Inter-Domain Routing), ignorando las restricciones de clases antiguas (A, B, C) para mayor flexibilidad.
 * **Validación de Entradas:** El sistema incluye sanitización de datos (Regex) para rechazar octetos > 255 o caracteres alfabéticos.
 * **Casos Borde (/31 y /32):** Para máscaras de 31 y 32 bits, el sistema reporta **0 hosts disponibles**, apegándose a la fórmula estándar `(2^n) - 2` utilizada en el curso.
+
