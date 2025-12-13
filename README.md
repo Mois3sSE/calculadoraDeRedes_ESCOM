@@ -37,7 +37,7 @@ ProyectoRedes/
 ├── bin/                    # Archivos compilados (.class)
 ├── README.md               # Documentación
 └── CalculadoraIP.jar       # Ejecutable Final
-
+```
 ## Instrucciones de Instalación y Ejecución
 
 ### Opción A: Desde Visual Studio Code (Opcion para codigo fuente) 
@@ -182,6 +182,169 @@ Una vez cargados todos los departamentos:
 Información institucional y créditos del equipo de desarrollo.
 * Incluye botones interactivos para visitar el **Repositorio en GitHub** o abrir la documentación local (**README**) directamente desde la aplicación.
 
+## Ejemplos de la calculadora 
+**Ejemplo CIDR** <br>
+* **Ejemplo 1** 
+```
+Ingresando los siguientes datos
+    Direccion IP: 192.168.1.0
+    Prefijo: 24
+El resultado debera de ser
+    Direccion de red: 192.168.1.0
+    Mascara de subred: 255.255.255.0
+    Prefijo : /24
+    Direccion broadcast: 192.168.1.255
+Hots utiles
+    Desde : 192.168.1.1
+    Hasta : 192.168.1.254
+    Total host: 254
+ ```
+* **Ejemplo 2** 
+```
+Ingresando los siguientes datos
+    Direccion IP: 10.0.0.2
+    Prefijo: 8
+El resultado debera de ser
+    Direccion de red: 10.0.0.0
+    Mascara de subred: 255.0.0.0
+    Prefijo : /8
+    Direccion broadcast: 10.255.255.255
+Hots utiles
+    Desde : 10.0.0.1
+    Hasta : 10.255.255.254
+    Total host: 16777214
+ ```
+* **Ejemplo 3** 
+```
+Ingresando los siguientes datos
+    Direccion IP: 10.16.3.65
+    Prefijo: 23
+El resultado debera de ser
+    Direccion de red: 10.16.2.0
+    Mascara de subred: 255.255.254.0
+    Prefijo : /23
+    Direccion broadcast: 10.16.3.255
+Hots utiles
+    Desde : 10.16.2.1
+    Hasta : 10.16.3.254
+    Total host: 510
+ ```
+**Ejemplo CIDR** <br>
+* **Ejemplo 1**
+```
+Ingresando los siguientes datos
+    Direccion Ip Base: 192.168.0.0
+    Prefijo Base: 24
+    Depto A -> 100 Host
+    Depto B -> 50 Host
+    Depto C -> 25 Host
+    Depto D -> 10
+Resultado
+Subred A
+    Host req : 100
+    Host Dip : 126
+    Direccion red : 192.168.0.0 / 25
+    Mascara : 255.255.255.128
+    Rango inicio : 192.168.0.1
+    Rango fin : 192.168.0.126
+    Broadcast : 192.168.0.127
+    Desperdicio : 26
+Subred B
+    Host req : 50
+    Host Dip : 62
+    Direccion red : 192.168.0.128 / 26
+    Mascara : 255.255.255.192
+    Rango inicio : 192.168.0.129
+    Rango fin : 192.168.0.190
+    Broadcast : 192.168.0.191
+    Desperdicio : 12
+Subred C
+    Host req : 25
+    Host Dip : 30
+    Direccion red : 192.168.0.192 / 27
+    Mascara : 255.255.255.224
+    Rango inicio : 192.168.0.193
+    Rango fin : 192.168.0.222
+    Broadcast : 192.168.0.223
+    Desperdicio : 5
+Subred D
+    Host req : 10
+    Host Dip : 14
+    Direccion red : 192.168.0.224 / 28
+    Mascara : 255.255.255.240
+    Rango inicio : 192.168.0.225
+    Rango fin : 192.168.0.238
+    Broadcast : 192.168.0.139
+    Desperdicio : 4
+```
+* **Ejemplo 2**
+```
+Ingresando los siguientes datos
+    Direccion Ip Base: 148.204.1.0
+    Prefijo Base: 24
+    Red 1 -> 20
+    Red 2 -> 100
+    Red 3 -> 50
+    Enlace A -> 2
+    Enlace B -> 2
+    Enlace C -> 2
+Resultado
+Red 2
+    Host req : 100
+    Host Dip : 126
+    Direccion red : 148.204.1.0 / 25
+    Mascara : 255.255.255.128
+    Rango inicio : 148.204.1.1
+    Rango fin : 148.204.1.126
+    Broadcast : 148.204.1.127
+    Desperdicio : 26
+Red 3
+    Host req : 50
+    Host Dip : 62
+    Direccion red : 148.204.1.128 / 26
+    Mascara : 255.255.255.192
+    Rango inicio : 148.204.1.129
+    Rango fin : 148.204.1.190
+    Broadcast : 148.204.1.191
+    Desperdicio : 12
+Red 1
+    Host req : 20
+    Host Dip : 30
+    Direccion red : 148.204.1.192 / 27
+    Mascara : 255.255.255.224
+    Rango inicio : 148.204.1.193
+    Rango fin : 148.204.1.222
+    Broadcast : 148.204.1.223
+    Desperdicio : 10
+Enlace A
+    Host req : 2
+    Host Dip : 2
+    Direccion red : 148.204.1.224 / 30
+    Mascara : 255.255.255.252
+    Rango inicio : 148.204.1.225
+    Rango fin : 148.204.1.226
+    Broadcast : 148.204.1.227
+    Desperdicio : 0
+Enlace B
+    Host req : 2
+    Host Dip : 2
+    Direccion red : 148.204.1.228 / 30
+    Mascara : 255.255.255.252
+    Rango inicio : 148.204.1.229
+    Rango fin : 148.204.1.230
+    Broadcast : 148.204.1.231
+    Desperdicio : 0
+Enlace C
+    Host req : 2
+    Host Dip : 2
+    Direccion red : 148.204.1.232 / 30
+    Mascara : 255.255.255.252
+    Rango inicio : 148.204.1.233
+    Rango fin : 148.204.1.234
+    Broadcast : 148.204.1.235
+    Desperdicio : 0
+
+```
 ### Manejo de Errores Comunes
 El sistema cuenta con validaciones para guiar al usuario:
 * **Espacio Insuficiente:** Si la suma de los hosts requeridos supera la capacidad de la Red Base, el sistema mostrará una alerta indicando que no hay espacio disponible.
